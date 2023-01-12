@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using MySqlConnector;
+using System.Data.SqlClient;
 using static TarefasApi.Data.TarefaContext;
 
 namespace TarefasApi.Extensions;
@@ -12,7 +13,7 @@ public static class ServiceCollectionsExtensions
         builder.Services.AddScoped<GetConnection>(sp =>
         async () =>
         {
-            var connection = new SqlConnection(connectionString);
+            var connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
             return connection;
         });
